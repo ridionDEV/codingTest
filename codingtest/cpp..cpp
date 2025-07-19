@@ -1,10 +1,26 @@
 #include <iostream>
-using namespace std;
+#include <bitset>
+#include <iomanip>
+#include <limits>
+
+int a = 1;
+class Pos{
+    public:
+    int x = 0;
+    int y = 0;
+
+};
 
 int main(void)
 {
-    int a;
+    Pos pos;
 
-    std::cout << sizeof(a) << std::endl;
+    std::cout << pos.x <<  std::endl;
+
+    pos.x = 10;
+
+    std::cout << pos.x <<  std::endl;
+
+
 }
 
