@@ -16,6 +16,7 @@ int main(void) {
     long double distance_1 = 1.0_kg;
     long double distance_2 = 3.2_lbs;
 
-    cout << distance_2 << endl;
+    int a = !0;
+    cout << a << endl;
 }
 
