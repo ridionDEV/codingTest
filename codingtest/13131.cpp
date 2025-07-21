@@ -1,22 +1,44 @@
 #include <iostream>
 #include <iomanip>
+#include <bitset>
+#include <string>
 using namespace std;
 
-const long double kg_per_lbs = 2.20462L;
+struct Person{
+    string name;
+    int age;
+    float height;
+    float weight;
+    int id;
+};
 
-long double operator"" _kg(long double value){
-    return value;
+int getNewId(){
+    static int id = 0;
+    id++;
+
+    return id;
 }
 
-long double operator"" _lbs(long double value){
-    return value * kg_per_lbs;
+void Func_2(Person *_person){
+    if((_person)->age >= 25) // (*_person).age 와 같음
+        cout << _person->name << endl;
+        cout << _person->age << endl;
+}
+
+void Swap(int &a,int &b){
+    int temp = a;
+    a = b;
+    b =temp;
 }
 
 int main(void) {
-    long double distance_1 = 1.0_kg;
-    long double distance_2 = 3.2_lbs;
 
-    int a = !0;
-    cout << a << endl;
+    int a =10;
+    int b = 20;
+
+
+    Swap(a,b);
+    cout << a << b;
+    return 0;
 }
 
