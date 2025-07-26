@@ -1,5 +1,6 @@
 #include <iostream>
 #include <random>
+#include <limits>
 using namespace std;
 
 int main(void){
@@ -14,10 +15,16 @@ int main(void){
             static int a;
             static int count = 0;
 
-            cout << "1~100 정수를 입력하세요 남은 기회("<<5-count<<") : ";
+            cout << "숫자를 입력하세요. 남은 기회("<<6-count<<") : ";
             cin >> a;
+            if(cin.fail()){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                throw invalid_argument("숫자를 입력하세요.");
+                continue;
+            }
             if(a<=0 || a>100){
-                throw exception();
+                throw out_of_range("1~100 사이의 숫자를 입력하세요.");
                 continue;
             }
 
@@ -35,7 +42,7 @@ int main(void){
                 is_correct = true;
             }
 
-            if(count >= 5)
+            if(count >= 6)
             {
                 cout << "실패.. 정답은 " << answer << " 입니다." << endl;
                 break;
