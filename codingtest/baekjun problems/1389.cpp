@@ -9,7 +9,7 @@ int n,m;
 int value[101]={0};
 
 int minimum  = INT_MAX;
-int solve;
+int answer;
 
 void bfs(int start,vector<vector<int>> &_node){
     int dist[101]={-1};
@@ -35,7 +35,7 @@ void bfs(int start,vector<vector<int>> &_node){
 
     if(minimum > value[start]){
         minimum = value[start];
-        solve = start;
+        answer = start;
     }
 }
 
@@ -54,7 +54,7 @@ int main(void){
         bfs(i,node);
     }
 
-    cout << solve << endl;
+    cout << answer << endl;
 
     return 0;
 }

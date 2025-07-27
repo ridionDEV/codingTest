@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 
@@ -11,24 +12,16 @@ int main(void){
     for(int i=0;i<t;i++){
         int x,y;
         cin >> x >> y;
-        int dist = y - x;
-        int count =0;
-        int current = 0;
-        int move = 0;
-        while(true){
-            move += 1;
-            current += (move)*2;
-            count += 2;
 
-            if(current - move >= dist){
-                cout << count-1 << '\n';
-                break;
-            }
-            else if(current >= dist){
-                cout << count << '\n';
-                break;
-            }
-        }
+        int dist = y-x;
+        int d = sqrt(dist);
+        if(d*d ==dist)
+            cout << 2*d - 1 << endl;
+        else if(d*(d+1) >= dist)
+            cout << 2*d << endl;
+        else if(d*d < dist)
+            cout << 2*d + 1 << endl;
+        
     }
 
     return 0;

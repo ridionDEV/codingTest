@@ -5,7 +5,7 @@
 
 using namespace std;
 
-static int solve = 0;
+static int answer = 0;
 
 void bfs(int x, int y, vector<vector<int>> &_board){
     int dx[4] = {1,-1,0,0};
@@ -37,7 +37,7 @@ void bfs(int x, int y, vector<vector<int>> &_board){
     }
 
 
-    solve = max(solve,count);
+    answer = max(answer,count);
     
 }
 
@@ -69,6 +69,6 @@ int main(void){
         }
     
 
-    cout << solve << endl;
+    cout << answer << endl;
     return 0;
 }
