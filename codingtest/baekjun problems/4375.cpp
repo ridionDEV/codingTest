@@ -12,6 +12,5 @@ int main(void){
             count++;
         }
         cout << count << '\n';
-        
     }
 }
