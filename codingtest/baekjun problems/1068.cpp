@@ -1,10 +1,9 @@
 #include <iostream>
-#include <queue>
 #include <vector>
 
 using namespace std;
 
-int n,root,delNode,leafNode;
+int n,root,delNode, Count = 0;
 
 vector<int> tree[50];
 bool visited[50] = {false};
@@ -14,8 +13,13 @@ void dfs(int node){
     visited[node] = true;
     
     bool isLeaf = true;
-
-
+    for(int child : tree[node]){
+        if(child != delNode){
+            isLeaf = false;
+            dfs(child);
+        }
+    }
+    if(isLeaf) Count++;
 }
 
 int main(void){
@@ -37,7 +41,7 @@ int main(void){
     }
     else{
         dfs(root);
-        cout << leafNode << endl;
+        cout << Count << endl;
     }
     return 0;
 }
