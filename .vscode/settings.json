@@ -55,7 +55,8 @@
         "xutility": "cpp",
         "bitset": "cpp",
         "iomanip": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "string": "cpp"
     },
 
     "files.exclude": {
