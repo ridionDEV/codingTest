@@ -12,25 +12,34 @@ int main(void){
 
     cin >> w >> h >> f >> c >> x1 >> y1 >> x2 >> y2;
 
+    long long area = (x2-x1) * (y2-y1);
+    int cnt = c +1;
+
 
     if(f <= w-f){
-
-        for(int i=0;i<c+1;i++){
-            value += (x2-x1) * (y2-y1) + (f - x1) * (h/(c+1) - y1);
-
+        if(f >= x2){
+            value += (area * 2) * (cnt);
         }
+        else if(f > x1){
+            value += (area + (f - x1) * (y2 - y1)) * (cnt);
+        }
+        else if(f <= x1){
+            value += area * (cnt);
+        }
+
     }
     else{
 
-        if(w >= f + x2){
-            for(int i=0;i<c+1;i++)
-                value += (x2-x1) * (y2-y1) + (f - x1) * (h/(c+1) - y1);
+        if(w-f <= x1){
+            value += area * (cnt);
 
         }
-        else{
-            for(int i=0;i<c+1;i++)
-                value += (x2 - x1) * (y2-y1);
+        else if(w-f >= x2){
+            value += area * 2 * (cnt);
 
+        }
+        else if(w-f < x2 && w-f > x1){
+            value += (area + (w-f -x1) * (y2 -y1)) * (cnt);
         }
 
     }
