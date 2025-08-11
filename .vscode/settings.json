@@ -56,7 +56,8 @@
         "bitset": "cpp",
         "iomanip": "cpp",
         "random": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "functional": "cpp"
     },
 
     "files.exclude": {
