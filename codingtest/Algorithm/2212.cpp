@@ -17,27 +17,29 @@ int main(){
 
     priority_queue<pair<int,int>> pq;
 
-    for(int i=1;i<n;i++){
-        if(A[i]-A[i-1] != 0){
-            pq.push({A[i]-A[i-1],i});
+    for(int i=0;i<n-1;i++){
+        if(A[i+1]-A[i] != 0){
+            pq.push({A[i+1]-A[i],i});
         }
     }
 
-    vector<int> B(k-1);
-    for(int i=0;i<k-1;i++){
-        B[i] = (pq.top().second);
+    vector<int> B;
+    int gap = min((int)pq.size(), k-1);
+    for(int i=0;i<gap;i++){
+        B.push_back(pq.top().second);
         pq.pop();
     }
-
+    
     sort(B.begin(),B.end());
 
     int result = 0;
     int start = 0;
-    for(int value : B){
-        result += A[value-1] - A[start];
-        start = value;
+    for(int v : B){
+        result += A[v] - A[start];
+        start = v + 1;
     }
-
+    
+    result += A[n-1] - A[start];
 
     cout << result;
     return 0;
