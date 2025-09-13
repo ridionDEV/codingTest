@@ -1,31 +1,49 @@
 #include <iostream>
-#include <string>
 #include <algorithm>
 #include <vector>
 
 using namespace std;
 
-int main(){
+int l,c;
+vector<char> A;
+vector<char> result;
+string vowels = "aeiou";
 
-    int l,c;
+bool isVowel(char c){
+    return vowels.find(c) != string::npos;
+}
+void dfs(int now,int depth,int vowelCnt, int consonantCnt){
+    if(depth == l){
+        if(vowelCnt>=1 && consonantCnt >= 2){
+            for(char c : result) cout << c;
+            cout << '\n';
+        }
+        return;
+    }
+
+    if(now >= c) return;
+
+    result.push_back(A[now]);
+    if(isVowel(A[now])){
+        dfs(now+1,depth+1,vowelCnt+1,consonantCnt);
+    }
+    else{
+        dfs(now+1,depth+1,vowelCnt,consonantCnt + 1);
+    }
+    result.pop_back();
+    dfs(now+1,depth,vowelCnt,consonantCnt);
+}
+
+int main(){
+    ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     cin >> l >> c;
-    vector<char> A(c);
+    A.resize(c);
     for(int i=0;i<c;i++){
         cin >> A[i];
     }
     sort(A.begin(),A.end());
 
-    for(int i=0;i<c;i++){
-        if(c-i < l) break;
-
-        string temp = "";
-        temp += A[i];
-
-        for(int j=0;j<l-1;j++){
-            
-        }
-    }
-
+    dfs(0,0,0,0);
 
     return 0;
 }

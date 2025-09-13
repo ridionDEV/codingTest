@@ -5,11 +5,11 @@
             "label": "C/C++: g++.exe 활성 파일 빌드",
             "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
             "args": [
+                "-std=c++26",
                 "-fdiagnostics-color=always",
                 "-g",
-                "-std=c++20",
                 "${file}",
-                "-o",
+                "-o",   
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
@@ -17,26 +17,6 @@
             },
             "problemMatcher": [
                 "$gcc"
-            ],
-            "group": "build",
-            "detail": "디버거에서 생성된 작업입니다."
-        },
-        {
-            "type": "cppbuild",
-            "label": "C/C++: cl.exe 활성 파일 빌드",
-            "command": "cl.exe",
-            "args": [
-                "/Zi",
-                "/EHsc",
-                "/nologo",
-                "/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "${file}"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$msCompile"
             ],
             "group": {
                 "kind": "build",
