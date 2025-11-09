@@ -3,31 +3,21 @@
 
 using namespace std;
 
-int n,k;
-int up;
-int down;
 
-int cnt=1;
-vector<int> a;
-
-void Rotation(){
-
-    if(a[down] > 1000) a[down] -= 1000;
-
-    if(up <= 0) up = 2*n - 1;
-    else up--;
-    if(down <= 0) down = 2*n -1;
-    else down--;
-    
-
-}
 
 int main(){
+    int n,k;
+    int up;
+    int down;
 
+    int cnt=0;
+    
     cin >> n >> k;
     up = 0;
     down = n-1;
-    a.resize(n*2);
+
+    int robot = 1001;
+    vector<int> a(2*n);
 
     for(int i=0;i<n*2;i++){
         cin >> a[i];
@@ -35,59 +25,61 @@ int main(){
 
     while(true){
         
-
+        cnt++;
         //1
-        Rotation();
+        if(up == 0) up = (2*n - 1);
+        else up--;
+
+        if(down == 0) down = (2*n -1);
+        else down--;
+
+        if(a[down] >= robot) a[down] -= robot;
 
         //2
-        int i = down;
+        int r = down;
         while(true){
-            if(i < 0) i = 2*n - 1;
+            if(r < 0) r = (2*n - 1);
 
-            if(a[i] > 1000 && i == down){
-                a[i] -= 1000;
-            }
+            if(a[r] >= robot){
+                if(r == 2*n-1 ){
+                    if(a[0]  > 0 && a[0] < robot){
 
-            if(i == 2*n - 1){
-                if(a[i] > 1000 && a[0] > 0 && a[0] < 1000){
-                    a[i] -= 1000;
-                    a[0] += 1000 - 1;
-
-                    if(a[0] == 1000) a[0] -= 1000;
-
-                    
+                        a[r] -= robot;
+                        a[0] += robot;
+                        a[0]--;
+                    }
                 }
-            }
-            else{
-                if(a[i] > 1000 && a[i+1] > 0 && a[i] < 1000){
-                    a[i] -= 1000;
-                    a[i+1] += 1000 - 1;
-
-                    if(a[i+1] == 1000) a[i] -= 1000;
+                else{
+                    if(a[r+1]  > 0 && a[r+1] < robot){
+                        a[r] -= robot;
+                        a[r+1] += robot;
+                        a[r+1]--;
+                    }
                 }
             }
 
-            if(i == up) break;
-            i--;
+            if(r == up) break;
+            r--;
         }
+        
+        if(a[down] >= robot) a[down] -= robot;
 
         //3
-        if(a[up] > 0){
-            a[up] += 1000 - 1;
-
-            if(a[up] == 1000) a[up] -= 1000;
-        }   
+        if (a[up] < robot && a[up] > 0) {
+            a[up] += robot;  
+            a[up]--;   
+        }
 
         //4
-        
         int c=0;
+        for(int x : a){
 
-        for(int i=0;i<2*n;i++){
-            if(a[i] <= 0) c++;
+            if(x % robot == 0) c++;
         }
-        if(k <= c) break;
+
         
-        cnt++;
+        if(c >= k) break;
+        
     }
 
     cout << cnt;
